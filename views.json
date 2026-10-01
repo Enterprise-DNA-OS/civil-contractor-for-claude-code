@@ -10,7 +10,7 @@
       },
       {
         "title": "Decisions required",
-        "sql": "select * from attention order by priority,record"
+        "sql": "select * from attention order by case priority when 'hold' then 0 when 'chase' then 1 else 2 end,record,reason"
       }
     ]
   },
