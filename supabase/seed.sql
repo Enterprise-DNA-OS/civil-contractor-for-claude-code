@@ -1,0 +1,47 @@
+insert into workers (id,name,external_id) values
+('00000000-0000-4000-8000-000000000001','Ana Patel','EMP-01'),
+('00000000-0000-4000-8000-000000000002','Wiremu Rangi','EMP-02'),
+('00000000-0000-4000-8000-000000000003','Grace Chen','EMP-03')
+on conflict do nothing;
+insert into plant (id,name,required_ticket,service_due) values
+('00000000-0000-4000-8000-000000000011','EX-12 Excavator','Excavator',current_date+30),
+('00000000-0000-4000-8000-000000000012','RL-04 Roller','Roller',current_date-2),
+('00000000-0000-4000-8000-000000000013','EX-18 Excavator','Excavator',current_date+60)
+on conflict do nothing;
+insert into projects (id,name,client,jurisdiction,last_diary) values
+('00000000-0000-4000-8000-000000000021','River Road Drainage','Waikato Infrastructure','NZ',current_date-5),
+('00000000-0000-4000-8000-000000000022','Airport Access Road','Airport Civil','NZ',current_date)
+on conflict do nothing;
+insert into competencies (id,worker_id,ticket,assessed_on,expires_on,assessor) values
+('00000000-0000-4000-8000-000000000031','00000000-0000-4000-8000-000000000001','Excavator',current_date-200,current_date+45,'Mere Wilson'),
+('00000000-0000-4000-8000-000000000032','00000000-0000-4000-8000-000000000002','Roller',current_date-300,current_date-1,'Mere Wilson'),
+('00000000-0000-4000-8000-000000000033','00000000-0000-4000-8000-000000000003','Excavator',current_date-100,current_date+20,'Mere Wilson')
+on conflict do nothing;
+insert into inductions (id,worker_id,project_id,inducted_on,expires_on) values
+('00000000-0000-4000-8000-000000000041','00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000021',current_date-30,current_date+60),
+('00000000-0000-4000-8000-000000000042','00000000-0000-4000-8000-000000000002','00000000-0000-4000-8000-000000000021',current_date-90,current_date-2),
+('00000000-0000-4000-8000-000000000043','00000000-0000-4000-8000-000000000003','00000000-0000-4000-8000-000000000022',current_date-30,current_date+60)
+on conflict do nothing;
+insert into allocations (id,name,project_id,worker_id,plant_id,work_date,hours) values
+('00000000-0000-4000-8000-000000000051','ALLOC-101','00000000-0000-4000-8000-000000000021','00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',current_date,8),
+('00000000-0000-4000-8000-000000000052','ALLOC-102','00000000-0000-4000-8000-000000000021','00000000-0000-4000-8000-000000000002','00000000-0000-4000-8000-000000000012',current_date,8),
+('00000000-0000-4000-8000-000000000053','ALLOC-103','00000000-0000-4000-8000-000000000022','00000000-0000-4000-8000-000000000003','00000000-0000-4000-8000-000000000013',current_date+1,8),
+('00000000-0000-4000-8000-000000000054','ALLOC-098','00000000-0000-4000-8000-000000000021','00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000011',current_date-5,8),
+('00000000-0000-4000-8000-000000000055','ALLOC-099','00000000-0000-4000-8000-000000000022','00000000-0000-4000-8000-000000000003','00000000-0000-4000-8000-000000000013',current_date-4,8)
+on conflict do nothing;
+insert into prestarts (id,plant_id,worker_id,check_date,result,notes) values
+('00000000-0000-4000-8000-000000000061','00000000-0000-4000-8000-000000000011','00000000-0000-4000-8000-000000000001',current_date,'pass','Quick hitch pin checked, no defects'),
+('00000000-0000-4000-8000-000000000062','00000000-0000-4000-8000-000000000012','00000000-0000-4000-8000-000000000002',current_date,'fail','Hydraulic leak, isolate for workshop')
+on conflict do nothing;
+insert into dockets (id,name,allocation_id,hours,quantity,unit,description,approved_by,approved_on) values
+('00000000-0000-4000-8000-000000000071','DK-201','00000000-0000-4000-8000-000000000054',8,42,'metres','Stormwater trench excavation',null,null),
+('00000000-0000-4000-8000-000000000072','DK-202','00000000-0000-4000-8000-000000000055',9,120,'tonnes','Subgrade placement','Jo White',current_date-3)
+on conflict do nothing;
+insert into timesheets (id,worker_id,project_id,work_date,hours) values
+('00000000-0000-4000-8000-000000000081','00000000-0000-4000-8000-000000000001','00000000-0000-4000-8000-000000000021',current_date-5,8),
+('00000000-0000-4000-8000-000000000082','00000000-0000-4000-8000-000000000003','00000000-0000-4000-8000-000000000022',current_date-4,9)
+on conflict do nothing;
+insert into diary (id,project_id,work_date,notes) values
+('00000000-0000-4000-8000-000000000091','00000000-0000-4000-8000-000000000021',current_date-5,'Trench complete, client docket signature outstanding'),
+('00000000-0000-4000-8000-000000000092','00000000-0000-4000-8000-000000000022',current_date,'Access prepared, excavator booked tomorrow')
+on conflict do nothing;

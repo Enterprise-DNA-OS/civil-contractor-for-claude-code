@@ -1,24 +1,11 @@
-# Why there is no front end
+# Why this version has no front end
 
-Assignar is a database with a subscription. The tables underneath it are ordinary: a few entities, a few relationships, a handful of workflows you repeat every week. What you pay for is the layer on top that lets people who do not write SQL get at those tables. Screens, filters, dashboards, forms.
+A civil operations manager needs to know who is booked, whether plant can work and which dockets need chasing. Those records live in a database. The commands query them and write read-only HTML summaries and paperwork. Your coding agent is the door to those records.
 
-That layer used to be the whole product, because talking to a database was hard. It is not hard any more. Open this folder in Claude Code, describe what you want, and it writes the query, runs it, and explains the answer. Ask a question the dashboard never had a chart for and you still get an answer.
+This is an office-operated base for crew and plant coordination. It does not include a mobile field app, offline capture and sync, drag-and-drop scheduling, GPS, photos or signature capture. It cannot replace those workflows by itself. Enterprise DNA can build the agreed field interface and integrations as part of your version. Keep the existing field workflow until that work is delivered and tested.
 
-## What you gain
+One worker and one item of plant can have one allocation per day in the base version. That intentionally rejects double bookings but also excludes legitimate split shifts. Add shift intervals and overlap tests through `/customise` before running split-shift operations.
 
-- **Better answers.** A dashboard shows what the vendor decided to chart. Here you ask your own question, in your own words, and get it answered against your own data.
-- **No seats.** Everyone who needs to look can look. The bill does not grow with headcount.
-- **Your data in your Postgres.** Plain tables. Back them up, query them from anything, leave any time. There is no export step because there is nothing to leave.
-- **A process that matches you.** When your way of working changes, you add a command. You do not wait for a feature request to clear.
+Local PGlite supports one process at a time. For shared operations use managed Postgres, distinct database roles, tested backups and a secure connection. The CLI uses the database credentials supplied to it and has no separate per-user access control or tamper-proof audit history. Set those requirements before connecting a team. Agent subscriptions, hosting and support have their own costs.
 
-## What you give up
-
-- **A visual board.** Stages are a table you ask about, not cards you drag.
-- **A phone app.** It runs where Claude Code runs.
-- **A vendor help desk.** This is open source. Enterprise DNA supports the installed version for businesses that want someone to call.
-
-## Who this fits
-
-Small teams who already use Claude Code, or who would rather learn to ask than learn another interface. If your team needs a screen to look at all day, keep Assignar. If you need the answers more than the screens, this is cheaper, faster and yours.
-
-Installed and run for you: https://enterprisedna.co/omni/instead-of/assignar
+Built and run for you through Omni by Enterprise DNA: https://enterprisedna.co/omni/book/?offer=replace-software&utm_campaign=assignar

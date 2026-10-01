@@ -1,11 +1,35 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "docket",
+    "title": "Civil works docket",
+    "for_each": "select id,name from dockets",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Work record for client review",
+        "note": "Recorded approval is not a digital signature. Confirm quantities with the client before invoicing.",
+        "sql": "select name,project,worker,plant,work_date,hours,quantity,unit,description,approved_by,approved_on from docket_register where id=$1"
+      }
+    ]
+  },
+  {
+    "name": "site-brief",
+    "title": "Site allocation and safety brief",
+    "for_each": "select id,name from projects where status='active'",
+    "file": "name",
+    "sections": [
+      {
+        "title": "Allocations",
+        "sql": "select name,work_date,worker,plant,hours from allocation_checks where project_id=$1 order by work_date"
+      },
+      {
+        "title": "Checks to resolve",
+        "sql": "select c.record,c.work_date,c.rule,c.issue from compliance_findings c join projects p on p.name=c.project where p.id=$1 order by work_date"
+      },
+      {
+        "title": "Site diary",
+        "sql": "select work_date,notes from diary where project_id=$1 order by work_date desc"
+      }
     ]
   }
 ]

@@ -1,0 +1,12 @@
+[
+  "Which booked operators have a ticket gap on their work day?",
+  "Which allocations have no current site induction?",
+  "Which machines are booked after their service due date?",
+  "Which plant checks failed today?",
+  "Which dockets have waited more than two days for approval?",
+  "Which approved dockets have not been marked invoiced?",
+  "Where did recorded hours exceed the planned allocation?",
+  "Which active sites have gone quiet for more than three days?",
+  "Which machines have no hours allocated in the next seven days?",
+  "Which imported hours still need a project assigned?"
+]
